@@ -1,0 +1,99 @@
+﻿@model IEnumerable<FerreteriaDiego.Models.Producto>
+
+@{
+    ViewBag.Title = "Listado de Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-3">📦 Listado de Productos</h2>
+
+<p>
+    @Html.ActionLink(
+        "➕ Crear nuevo producto",
+        "Create",
+        null,
+        new { @class = "btn btn-primary mb-3" }
+    )
+</p>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th class="text-end">Precio</th>
+            <th class="text-end">IVA %</th>
+            <th>Categoría</th>
+            <th class="text-end">Stock</th>
+            <th class="text-center">Estado</th>
+            <th>Fecha creación</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.codigo</td>
+                <td>@item.nombre</td>
+                <td>@item.descripcion</td>
+
+                <td class="text-end">
+                    $ @item.precio_unitario
+                </td>
+
+                <td class="text-end">
+                    @item.iva_porcentaje %
+                </td>
+
+                <td>@item.categoria</td>
+
+                <td class="text-end">
+                    @item.stock
+                </td>
+
+                <!-- ESTADO -->
+                <td class="text-center">
+                    @if (item.estado == "Activo")
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactivo</span>
+                    }
+                </td>
+
+                <td>
+                    @item.fecha_creacion
+                </td>
+
+                <!-- BOTONES ESTILIZADOS -->
+                <td class="text-center">
+                    @Html.ActionLink(
+                        "✏️ Editar",
+                        "Edit",
+                        new { id = item.id_producto },
+                        new { @class = "btn btn-sm btn-warning me-1" }
+                    )
+
+                    @Html.ActionLink(
+                        "🔍 Detalles",
+                        "Details",
+                        new { id = item.id_producto },
+                        new { @class = "btn btn-sm btn-info text-white me-1" }
+                    )
+
+                    @Html.ActionLink(
+                        "🗑 Eliminar",
+                        "Delete",
+                        new { id = item.id_producto },
+                        new { @class = "btn btn-sm btn-danger" }
+                    )
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

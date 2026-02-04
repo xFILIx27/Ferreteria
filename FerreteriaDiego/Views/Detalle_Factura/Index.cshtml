@@ -1,0 +1,125 @@
+﻿@model IEnumerable<FerreteriaDiego.Models.Detalle_Factura>
+
+@{
+    ViewBag.Title = "Detalles de Facturas";
+}
+
+<div class="container mt-4">
+
+    <!-- Título + botón -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">📄 Detalles de Facturas</h3>
+
+        @Html.ActionLink(
+            "➕ Nuevo registro",
+            "Create",
+            null,
+            new { @class = "btn btn-primary" }
+        )
+    </div>
+
+    <!-- Card -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle mb-0">
+
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Cant.</th>
+                            <th>Precio</th>
+                            <th>% Desc.</th>
+                            <th>Valor Desc.</th>
+                            <th>% IVA</th>
+                            <th>IVA</th>
+                            <th>Subtotal</th>
+                            <th>Total</th>
+                            <th>Factura</th>
+                            <th>Producto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.id_detalle</td>
+                                <td>@item.descricion</td>
+                                <td class="text-center">@item.cantidad</td>
+
+                                <!-- Precio -->
+                                <td class="text-end">
+                                    @item.precio_unitario
+                                </td>
+
+                                <!-- Descuento % -->
+                                <td class="text-center">
+                                    @item.descuento_porcentaje
+                                </td>
+
+                                <!-- Descuento valor (string, sin formato moneda) -->
+                                <td class="text-end">
+                                    @item.descuento_valor
+                                </td>
+
+                                <!-- IVA % -->
+                                <td class="text-center">
+                                    @item.iva_porcentaje
+                                </td>
+
+                                <!-- IVA valor -->
+                                <td class="text-end">
+                                    @item.iva_valor
+                                </td>
+
+                                <!-- Subtotal -->
+                                <td class="text-end">
+                                    @item.subtotal
+                                </td>
+
+                                <!-- Total -->
+                                <td class="text-end fw-bold">
+                                    @item.total
+                                </td>
+
+                                <!-- Factura -->
+                                <td class="text-center">
+                                    @item.Factura.numero_fatura
+                                </td>
+
+                                <!-- Producto -->
+                                <td class="text-center">
+                                    @item.Producto.codigo
+                                </td>
+
+                                <!-- Acciones -->
+                                <td class="text-center">
+                                    <a href="@Url.Action("Edit", new { id = item.id_detalle })"
+                                       class="btn btn-sm btn-warning me-1">
+                                        ✏️
+                                    </a>
+
+                                    <a href="@Url.Action("Details", new { id = item.id_detalle })"
+                                       class="btn btn-sm btn-info me-1 text-white">
+                                        🔍
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", new { id = item.id_detalle })"
+                                       class="btn btn-sm btn-danger">
+                                        🗑
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

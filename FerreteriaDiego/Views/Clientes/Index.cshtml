@@ -1,0 +1,83 @@
+﻿@model IEnumerable<FerreteriaDiego.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-3">👥 Clientes</h2>
+
+<p>
+    @Html.ActionLink(
+        "➕ Nuevo cliente",
+        "Create",
+        null,
+        new { @class = "btn btn-primary mb-3" }
+    )
+</p>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre / Razón social</th>
+            <th>Tipo doc.</th>
+            <th>N° documento</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Ciudad</th>
+            <th>Departamento</th>
+            <th>Fecha registro</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id_cliente</td>
+                <td>@item.nombre_razon_social</td>
+                <td>@item.tipo_documento</td>
+                <td>@item.numero_documento</td>
+                <td>@item.direccion</td>
+                <td>@item.telefono</td>
+                <td>@item.email</td>
+                <td>@item.ciudad</td>
+                <td>@item.departamento</td>
+                <td>
+                    @item.fecha_registro
+                </td>
+
+                <!-- BOTONES -->
+                <td class="text-center">
+                    @Html.ActionLink(
+                        "✏️ Editar",
+                        "Edit",
+                        new { id = item.id_cliente },
+                        new { @class = "btn btn-sm btn-warning me-1" }
+                    )
+
+                    @Html.ActionLink(
+                        "🔍 Detalles",
+                        "Details",
+                        new { id = item.id_cliente },
+                        new { @class = "btn btn-sm btn-info text-white me-1" }
+                    )
+
+                    @Html.ActionLink(
+                        "🗑 Eliminar",
+                        "Delete",
+                        new { id = item.id_cliente },
+                        new
+                        {
+                            @class = "btn btn-sm btn-danger",
+                            onclick = "return confirm('¿Seguro que deseas eliminar este cliente?');"
+                        }
+                    )
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

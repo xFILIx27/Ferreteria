@@ -1,0 +1,93 @@
+﻿@model IEnumerable<FerreteriaDiego.Models.Factura>
+
+@{
+    ViewBag.Title = "Facturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-3">Facturas</h2>
+
+<p>
+    @Html.ActionLink(
+        "➕ Nuevo registro",
+        "Create",
+        null,
+        new { @class = "btn btn-primary mb-3" }
+    )
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>N° Factura</th>
+            <th>Emisión</th>
+            <th>Vencimiento</th>
+            <th class="text-end">Subtotal</th>
+            <th class="text-end">IVA</th>
+            <th class="text-end">Descuento</th>
+            <th class="text-end">Total</th>
+            <th class="text-center">Estado</th>
+            <th>Fecha creación</th>
+            <th>Cliente</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id_factura</td>
+
+                <td>@item.numero_fatura</td>
+
+                <td>@item.fecha_emision</td>
+
+                <td>@item.fecha_vencimiento</td>
+
+                <td class="text-end">
+                    @item.subtotal
+                </td>
+
+                <td class="text-end">
+                    @item.iva
+                </td>
+
+                <td class="text-end">
+                    @item.descuento
+                </td>
+
+                <td class="text-end fw-bold">
+                    @item.total
+                </td>
+
+                <!-- ESTADO (string, no bool) -->
+                <td class="text-center">
+                    @if (item.estado == "Pagada")
+                    {
+                        <span class="badge bg-success">Pagada</span>
+                    }
+                    else if (item.estado == "Pendiente")
+                    {
+                        <span class="badge bg-warning text-dark">Pendiente</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@item.estado</span>
+                    }
+                </td>
+
+                <td>@item.fecha_creacion</td>
+
+                <td>@item.Cliente.nombre_razon_social</td>
+
+                <td class="text-center">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_factura }, new { @class = "btn btn-sm btn-warning" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id_factura }, new { @class = "btn btn-sm btn-info ms-1" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_factura }, new { @class = "btn btn-sm btn-danger ms-1" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
