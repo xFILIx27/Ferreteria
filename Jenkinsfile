@@ -3,19 +3,19 @@ pipeline {
     stages {
         stage('Restore') {
             steps {
-                bat 'dotnet restore FerreteriaDiego.sln'
+                bat 'dotnet restore '
             }
         }
 
         stage('Build') {
             steps {
-                bat 'dotnet build FerreteriaDiego.sln --configuration Release'
+                bat 'dotnet build '
             }
         }
 
         stage('Test') {
             steps {
-                bat 'dotnet test FerreteriaDiego.sln --configuration Release --no-build'
+                bat 'dotnet test '
             }
         }
     }
