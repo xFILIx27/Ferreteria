@@ -138,3 +138,4 @@ C:\Users\ESTUDIANTES\Documents\Visual Satudio\Software\TestFactura\obj\Debug\net
 C:\Users\ESTUDIANTES\Documents\Visual Satudio\Software\TestFactura\obj\Debug\net8.0\TestFactura.pdb
 C:\Users\ESTUDIANTES\Documents\Visual Satudio\Software\TestFactura\obj\Debug\net8.0\TestFactura.genruntimeconfig.cache
 C:\Users\ESTUDIANTES\Documents\Visual Satudio\Software\TestFactura\obj\Debug\net8.0\ref\TestFactura.dll
+C:\Users\ESTUDIANTES\Documents\Visual Satudio\Software\TestFactura\obj\Debug\net8.0\TestFactura.sourcelink.json
