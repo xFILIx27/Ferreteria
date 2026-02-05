@@ -4,20 +4,20 @@ pipeline {
         stage('Restore') {
             steps {
                 bat "cd FerreteriaDiego"
-                bat 'dotnet restore '
+                bat 'dotnet restore FerreteriaDiego/FerreteriaDiego.csproj'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'dotnet build '
+                bat 'dotnet build FerreteriaDiego/FerreteriaDiego.csproj'
             }
         }
 
         stage('Test') {
             steps {
-                bat "cd ..\\TestFactura"
-                bat 'dotnet test '
+                
+                bat 'dotnet test TestFactura/TestFactura.csproj'
             }
         }
     }
