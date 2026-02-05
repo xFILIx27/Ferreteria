@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Restore') {
             steps {
+                bat "cd FerreteriaDiego"
                 bat 'dotnet restore '
             }
         }
@@ -15,6 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
+                bat "cd ..\\TestFactura"
                 bat 'dotnet test '
             }
         }
